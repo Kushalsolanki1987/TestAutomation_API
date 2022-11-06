@@ -1,4 +1,4 @@
-package resources;
+package com.restassured.resources;
 
 import com.assignment.restassured.pojo.IssuePayload;
 

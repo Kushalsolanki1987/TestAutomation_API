@@ -1,4 +1,4 @@
-package resources;
+package com.restassured.resources;
 
 public enum APIresources {
 

@@ -1,18 +1,19 @@
-package stepdefinitions;
+package com.restassured.stepdefinitions;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
 import java.io.FileNotFoundException;
 
+import com.restassured.resources.APIresources;
+import com.restassured.resources.TestDataBuild;
+import com.restassured.resources.Utils;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import resources.APIresources;
-import resources.TestDataBuild;
-import resources.Utils;
 
 public class StepDefinitions extends Utils {
 

@@ -1,4 +1,4 @@
-package resources;
+package com.restassured.resources;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,14 +20,24 @@ public class Utils {
 
 	public static RequestSpecification requestSpec;
 	static PrintStream log;
+	static {
+		try {
+			log = new PrintStream(new FileOutputStream("logging.txt"));
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	
 	
 	public static RequestSpecification requestSpecWithoutToken;
+	
 	private static final String PRIVATE_TOKEN_HEADER_NAME = "PRIVATE-TOKEN";
 
 	public RequestSpecification requestSpecifications() throws FileNotFoundException {
 
 		if (requestSpec == null) {
-			log = new PrintStream(new FileOutputStream("logging.txt"));
+	
 
 			requestSpec = new RequestSpecBuilder().setBaseUri(getProperties("baseUrl")).setContentType(ContentType.JSON)
 					.addHeader(PRIVATE_TOKEN_HEADER_NAME, getProperties("privateToken"))
@@ -40,7 +50,7 @@ public class Utils {
 
 	public String getProperties(String value) {
 
-		try (InputStream input = new FileInputStream("src/test/java/resources/config.properties")) {
+		try (InputStream input = new FileInputStream("src/test/java/com/restassured/resources/config.properties")) {
 
 			Properties prop = new Properties();
 
@@ -66,7 +76,7 @@ public class Utils {
 
 		if (requestSpecWithoutToken == null) {
 
-			 log = new PrintStream(new FileOutputStream("logging.txt"));
+		
 			requestSpecWithoutToken = new RequestSpecBuilder().setBaseUri(getProperties("baseUrl"))
 					.setContentType(ContentType.JSON).addFilter(RequestLoggingFilter.logRequestTo(log))
 					.addFilter(ResponseLoggingFilter.logResponseTo(log)).build();

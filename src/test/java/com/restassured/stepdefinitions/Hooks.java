@@ -1,4 +1,4 @@
-package stepdefinitions;
+package com.restassured.stepdefinitions;
 
 import java.io.FileNotFoundException;
 
