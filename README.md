@@ -12,7 +12,7 @@ Developed by Kushal Solanki
 
 2. Import project in Eclipse or IntelliJ
 
-3. Build maven project (to download all dependencies) => Clean and Install
+3. Build maven project (to download all dependencies) => mvn clean install
 
 4. Run Command "mvn test verify" in cmd screen from the Project location.
 
