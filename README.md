@@ -27,14 +27,21 @@ Developed by Kushal Solanki
 3. Implemented POJO classes for serializing and deserializing JSON Payload to increase the code readability
 
 4. Parameterized data to run test with multiple datasets using cucumber example keyboard.
+
+5. Implemented Tags in Test Runner file to run specific scenarios. For eg. Regression or Smoke.
  
-5. Implemented logging in framework to log request and response details
+6. Implemented logging in framework to log request and response details
 
-6. Execute complete framework from maven commands
+7. Execute complete framework from maven commands
 
-7. Generate Reports for Test Execution results 
+8. Generate Reports for Test Execution results 
 
 ### Note:
 Install Natural 0.9 plugins for maintaining BDD/ATDD files.
+
+
+### Test Execution Report:
+
+![image](https://user-images.githubusercontent.com/54288957/200193367-1552c448-f8d4-49b2-9d08-c06c958c8130.png)
 
 
