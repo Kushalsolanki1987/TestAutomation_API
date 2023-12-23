@@ -5,18 +5,14 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn clean compile'
-                }
+				bat 'mvn clean compile'
             }
         }
 
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
-                }
+				bat 'mvn test'
             }
         }
 
@@ -24,8 +20,9 @@ pipeline {
         stage ('Cucumber Reports') {
             steps {
                  cucumber buildStatus: “UNSTABLE”,
-			fileIncludePattern: "**/cucumber-report.json",
+			fileIncludePattern: "**/cucumber.json",
 			jsonReportDirectory: 'target'
         }
     }
-}}
+}
+}
