@@ -13,11 +13,10 @@ public class Hooks {
 	public void beforeScenario() throws FileNotFoundException { 
 		StepDefinitions m = new StepDefinitions();
 		
-		if(StepDefinitions.iid==null) {
+		if(m.iid==null){
 		m.issue_payload_with("Bug", "Issue with Frontend","Dev");
 		m.user_calls_with_http_request("NewIssueAPI", "POST");
-		m.verify_iid_maps_to_using("Bug", "GetIssueAPI");
-		
+		m.verify_iid_maps_to_using("Bug", "GetIssueAPI");	
 		}
 		
 		

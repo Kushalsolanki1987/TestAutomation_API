@@ -16,10 +16,13 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class Utils {
+public  class Utils {
 
-	public static RequestSpecification requestSpec;
 	static PrintStream log;
+	public static RequestSpecification requestSpec;
+	public static RequestSpecification requestSpecWithoutToken;
+	private static  final String PRIVATE_TOKEN_HEADER_NAME = "PRIVATE-TOKEN";
+	
 	static {
 		try {
 			log = new PrintStream(new FileOutputStream("logging.txt"));
@@ -28,27 +31,22 @@ public class Utils {
 		}
 	}
 
-	
-	
-	public static RequestSpecification requestSpecWithoutToken;
-	
-	private static final String PRIVATE_TOKEN_HEADER_NAME = "PRIVATE-TOKEN";
+	public static RequestSpecification requestSpecifications(){
 
-	public RequestSpecification requestSpecifications() throws FileNotFoundException {
-
-		if (requestSpec == null) {
-	
+		/*if (requestSpec == null) {*/
 
 			requestSpec = new RequestSpecBuilder().setBaseUri(getProperties("baseUrl")).setContentType(ContentType.JSON)
 					.addHeader(PRIVATE_TOKEN_HEADER_NAME, getProperties("privateToken"))
 					.addFilter(RequestLoggingFilter.logRequestTo(log))
 					.addFilter(ResponseLoggingFilter.logResponseTo(log)).build();
 			return requestSpec;
-		}
-		return requestSpec;
+			/*
+			 * }else { return requestSpec; }
+			 */
+		//return requestSpec;
 	}
 
-	public String getProperties(String value) {
+	public static  String getProperties(String value) {
 
 		try (InputStream input = new FileInputStream("src/test/java/com/restassured/resources/config.properties")) {
 
@@ -65,18 +63,17 @@ public class Utils {
 		}
 	}
 
-	public String getJsonPath(Response responseBody, String key) {
+	public static String getJsonPath(Response responseBody, String key) {
 
 		String resp = responseBody.asString();
 		JsonPath js = new JsonPath(resp);
 		return js.get(key).toString();
 	}
 
-	public RequestSpecification requestSpecificationsWithoutToken() throws FileNotFoundException {
+	public static RequestSpecification requestSpecificationsWithoutToken() throws FileNotFoundException {
 
 		if (requestSpecWithoutToken == null) {
 
-		
 			requestSpecWithoutToken = new RequestSpecBuilder().setBaseUri(getProperties("baseUrl"))
 					.setContentType(ContentType.JSON).addFilter(RequestLoggingFilter.logRequestTo(log))
 					.addFilter(ResponseLoggingFilter.logResponseTo(log)).build();
